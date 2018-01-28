@@ -19,7 +19,7 @@ thats it.
 ### Simple Math
 Racket
 ```racket
-(+ 4 (3 * 2))
+(+ 4 (* 3 2))
 ```
 Haskell
 ```
@@ -28,9 +28,9 @@ Haskell
 
 ### Function Definition e.g Selector (With contracts/type signature)
 
-Racket
+(Typed) Racket
 ```racket
--- a racket contract
+(: f (All (a b) a b -> a))
 (define (f x y) x)
 ```
 Haskell
@@ -43,23 +43,23 @@ type check, your program won't compile, e.g `f :: Int -> Int; f x = "NOT AN INT"
 ### Function Application e.g mapping
 
 Racket
-```scheme
-(map add1 '(1 2 3)) -- '(2 3 4)
+```racket
+(map add1 '(1 2 3)) ;; '(2 3 4)
 ```
 Haskell
 ```
-map (1 +) [1, 2, 3] -- [1, 2, 3]
+map (1 +) [1, 2, 3] -- [2, 3, 4]
 ```
 
 ### Composing Functions
 
 Racket
 ```racket
-((compose add1 abs) -1) -- 2
+((compose add1 abs) -1) ;; 2
 ```
 Haskell
 ```
-(+ 1) . abs $ -1 -- 2
+((+ 1) . abs) -1 -- 2
 ```
 
 ### Structs/Algebraic Data Types
